@@ -50,14 +50,15 @@ DeployGo is a modern, concurrent CLI tool that automates Docker-based deployment
 
 ## 📦 Installation
 
-Prerequisites
+**Prerequisites**
 		Go 1.21 or later
 		
 		Docker Engine
 		
 		SSH access to target servers
 
-Quick Install
+**Quick Install**
+
 		# Install directly via Go
 		go install github.com/C9b3rD3vi1/deploygo@latest
 
@@ -67,13 +68,14 @@ Quick Install
 		make build
 		sudo mv deploygo /usr/local/bin/
 		
-Docker Install
+**Docker Install**
 
 		docker pull C9b3rD3vi1/deploygo:latest
 		docker tag C9b3rD3vi1/deploygo:latest deploygo:latest
 		alias deploygo="docker run -v /var/run/docker.sock:/var/run/docker.sock deploygo"
 		
-🚀 Quick Start
+## 🚀 Quick Start
+
 1. Initialize a New Project
 		
 		deploygo init my-awesome-app
@@ -254,9 +256,13 @@ Running Tests
 ## 📊 Performance Benchmarks
 
 Operation	Traditional Tools	DeployGo	Improvement
+
 Multi-arch Build	4m 30s	2m 15s	2x faster
+
 Concurrent Deploys	Sequential	Parallel	3x faster
+
 Health Checks	45s	15s	3x faster
+
 Memory Usage	450MB	85MB	80% less
 
 
