@@ -99,6 +99,7 @@ text
 
 		deploygo monitor --follow --timeout 5m
 		
+
 		
 ## 📚 Usage Examples
 ## Basic Deployment
@@ -127,11 +128,14 @@ text
 		  --timeout 30s \
 		  --interval 5s
 
+
 ## Stream logs from multiple services
 		deploygo logs --follow --tail=100 app database cache
+
+
 		
 ## ⚙️ Configuration
-## Example .deploygo.yml
+**Example .deploygo.yml**
 
 		version: "1.0"
 		
@@ -190,6 +194,8 @@ Extend DeployGo with custom plugins:
 		    return &CustomHealthCheck{}
 		}
 		
+	
+	
 		
 🛠️ Development
 Building from Source
@@ -209,6 +215,8 @@ Building from Source
 		# Build for all platforms
 		make release
 		
+
+
 Running Tests
 
 		# Unit tests
@@ -239,6 +247,8 @@ Running Tests
 		├── plugins/                 # Plugin system
 		├── examples/                # Usage examples
 		
+	
+	
 		
 📊 Performance Benchmarks
 
@@ -247,6 +257,7 @@ Multi-arch Build	4m 30s	2m 15s	2x faster
 Concurrent Deploys	Sequential	Parallel	3x faster
 Health Checks	45s	15s	3x faster
 Memory Usage	450MB	85MB	80% less
+
 
 
 🐛 Troubleshooting
@@ -280,6 +291,7 @@ Debug Mode
 		deploygo --debug build --platform linux/amd64
 
 
+
 🤝 Contributing
 We love contributions! Please see our Contributing Guide for details.
 
@@ -293,6 +305,8 @@ Push to branch: git push origin feature/amazing-feature
 
 Open a Pull Request
 
+
+
 📄 License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
@@ -302,6 +316,8 @@ Built with the amazing Cobra CLI library
 Docker integration powered by Docker Go SDK
 
 Inspired by modern deployment tools like Flux and ArgoCD
+
+
 
 📞 Support
 📧 Email: nicksonwekongo@gmail.com
@@ -313,6 +329,7 @@ Inspired by modern deployment tools like Flux and ArgoCD
 📚 Documentation: Full Docs
 
 Made with ❤️ and Go
+
 
 <div align="center">
 "Simplicity is the ultimate sophistication" - Leonardo da Vinci
