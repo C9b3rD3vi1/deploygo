@@ -1,16 +1,19 @@
-DeployGo 🚀
+# DeployGo 🚀
 
-A Production-Grade Deployment CLI Tool Built in Go
+## A Production-Grade Deployment CLI Tool Built in Go
 
 https://img.shields.io/badge/Go-1.21+-blue.svg
+
 https://img.shields.io/badge/License-MIT-yellow.svg
+
 https://img.shields.io/badge/build-passing-brightgreen.svg
+
 https://img.shields.io/badge/coverage-90%2525-green.svg
 
 DeployGo is a modern, concurrent CLI tool that automates Docker-based deployments with enterprise-grade features. Built with performance and reliability in mind using Go's powerful concurrency model.
 
 
-✨ Features
+# ✨ Features
 		🚀 Multi-Architecture Docker Builds - Build for AMD64, ARM64 simultaneously
 		
 		⚡ Concurrent Deployments - Deploy to multiple environments in parallel
@@ -45,7 +48,7 @@ DeployGo is a modern, concurrent CLI tool that automates Docker-based deployment
 
 
 
-📦 Installation
+## 📦 Installation
 
 Prerequisites
 		Go 1.21 or later
@@ -97,38 +100,38 @@ text
 		deploygo monitor --follow --timeout 5m
 		
 		
-📚 Usage Examples
-Basic Deployment
+## 📚 Usage Examples
+## Basic Deployment
 
-# Build and deploy in one command
+## Build and deploy in one command
 		deploygo build && deploygo deploy production
 
-# With custom configuration
+## With custom configuration
 		deploygo deploy production \
 		  --strategy blue-green \
 		  --health-check \
 		  --rollback-on-failure
 				
-Advanced Multi-Environment Setup
+## Advanced Multi-Environment Setup
 
-# Deploy to multiple environments concurrently
+## Deploy to multiple environments concurrently
 		deploygo deploy staging production --parallel
 
-# With environment-specific configs
+## With environment-specific configs
 		deploygo deploy production --config .deploygo.prod.yml
 		
-Health Checks and Monitoring
-# Monitor with custom checks
+## Health Checks and Monitoring
+## Monitor with custom checks
 		deploygo monitor \
 		  --endpoint /health \
 		  --timeout 30s \
 		  --interval 5s
 
-# Stream logs from multiple services
+## Stream logs from multiple services
 		deploygo logs --follow --tail=100 app database cache
 		
-⚙️ Configuration
-Example .deploygo.yml
+## ⚙️ Configuration
+## Example .deploygo.yml
 
 		version: "1.0"
 		
