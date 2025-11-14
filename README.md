@@ -253,8 +253,10 @@ Running Tests
 		# With coverage
 		go test -coverprofile=coverage.out ./...
 		
-		# Project Structure
-		text
+		
+## Project Structure
+
+
 		deploygo/
 		├── cmd/
 		│   └── deploygo/
