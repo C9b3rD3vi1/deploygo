@@ -60,18 +60,25 @@ DeployGo is a modern, concurrent CLI tool that automates Docker-based deployment
 **Quick Install**
 
 		# Install directly via Go
+		
 		go install github.com/C9b3rD3vi1/deploygo@latest
 
 		# Or build from source
+		
 		git clone https://github.com/C9b3rD3vi1/deploygo
+		
 		cd deploygo
+		
 		make build
+		
 		sudo mv deploygo /usr/local/bin/
 		
 **Docker Install**
 
 		docker pull C9b3rD3vi1/deploygo:latest
+		
 		docker tag C9b3rD3vi1/deploygo:latest deploygo:latest
+		
 		alias deploygo="docker run -v /var/run/docker.sock:/var/run/docker.sock deploygo"
 		
 ## 🚀 Quick Start
@@ -79,24 +86,28 @@ DeployGo is a modern, concurrent CLI tool that automates Docker-based deployment
 1. Initialize a New Project
 		
 		deploygo init my-awesome-app
+		
 		cd my-awesome-app
 		
-This creates:
+**This creates:**
 
-text
 		my-awesome-app/
 		├── Dockerfile
 		├── docker-compose.yml
 		├── .deploygo.yml
 		├── .dockerignore
 		└── README.md
+	
 		
 2. Build Multi-Architecture Image
 
 		deploygo build --platform linux/amd64,linux/arm64 --tag myapp:v1.0.0
+		
+		
 3. Deploy to Staging
 
 		deploygo deploy staging --strategy rolling --health-check
+		
 4. Monitor Deployment
 
 		deploygo monitor --follow --timeout 5m
@@ -107,9 +118,11 @@ text
 ## Basic Deployment
 
 ## Build and deploy in one command
+
 		deploygo build && deploygo deploy production
 
 ## With custom configuration
+
 		deploygo deploy production \
 		  --strategy blue-green \
 		  --health-check \
@@ -118,13 +131,17 @@ text
 ## Advanced Multi-Environment Setup
 
 ## Deploy to multiple environments concurrently
+
 		deploygo deploy staging production --parallel
 
 ## With environment-specific configs
+
 		deploygo deploy production --config .deploygo.prod.yml
 		
 ## Health Checks and Monitoring
+
 ## Monitor with custom checks
+
 		deploygo monitor \
 		  --endpoint /health \
 		  --timeout 30s \
@@ -132,13 +149,15 @@ text
 
 
 ## Stream logs from multiple services
+
 		deploygo logs --follow --tail=100 app database cache
 
 
 		
 ## ⚙️ Configuration
 **Example .deploygo.yml**
-
+		
+		
 		version: "1.0"
 		
 		project:
@@ -181,9 +200,12 @@ text
 								
 ## 🔌 Plugins System
 
-Extend DeployGo with custom plugins:
+**Extend DeployGo with custom plugins:**
 
 // Example custom health check plugin
+
+		go
+		
 		package main
 		
 		type CustomHealthCheck struct{}
