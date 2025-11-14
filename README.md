@@ -177,7 +177,8 @@ text
 		      timeout: "60s"
 								
 								
-🔌 Plugins System
+## 🔌 Plugins System
+
 Extend DeployGo with custom plugins:
 
 // Example custom health check plugin
@@ -250,7 +251,7 @@ Running Tests
 	
 	
 		
-📊 Performance Benchmarks
+## 📊 Performance Benchmarks
 
 Operation	Traditional Tools	DeployGo	Improvement
 Multi-arch Build	4m 30s	2m 15s	2x faster
@@ -260,7 +261,9 @@ Memory Usage	450MB	85MB	80% less
 
 
 
-🐛 Troubleshooting
+## 🐛 Troubleshooting
+
+
 Common Issues
 Docker Connection Error:
 
@@ -292,7 +295,8 @@ Debug Mode
 
 
 
-🤝 Contributing
+## 🤝 Contributing
+
 We love contributions! Please see our Contributing Guide for details.
 
 Fork the repository
@@ -307,10 +311,12 @@ Open a Pull Request
 
 
 
-📄 License
+## 📄 License
+
+
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-🙏 Acknowledgments
+## 🙏 Acknowledgments
 Built with the amazing Cobra CLI library
 
 Docker integration powered by Docker Go SDK
@@ -319,7 +325,8 @@ Inspired by modern deployment tools like Flux and ArgoCD
 
 
 
-📞 Support
+## 📞 Support
+
 📧 Email: nicksonwekongo@gmail.com
 
 🐛 Issues: GitHub Issues
