@@ -1,31 +1,105 @@
 package cmd
 
 import (
-	"fmt"
-
-	"github.com/spf13/cobra"
+    "fmt"
+    "os"
+    "path/filepath"
+    "text/template"
+    
+    "github.com/spf13/cobra"
+    "github.com/C9b3rD3vi1/deploygo/internals/commands"
 )
 
 // initCmd represents the init command
 var initCmd = &cobra.Command{
-	Use:   "init",
-	Short: "Initialize a new project",
-	Long: `Initialize a new project with the necessary files and configurations.`,
-	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("init called")
-	},
+    Use:   "init [project-name]",
+    Short: "Initialize a new project with deployment configuration",
+    Long: `Initialize creates a new project with optimized Dockerfile, 
+docker-compose.yml, and deployment configuration.`,
+    Args: cobra.ExactArgs(1),
+    Run:   runInit,
 }
 
+
 func init() {
-	rootCmd.AddCommand(initCmd)
+    // Add flags to init command
+    initCmd.Flags().StringP("template", "t", "go", "Project template (go, nodejs, python)")
+    initCmd.Flags().StringP("language", "l", "go", "Primary language")
+    initCmd.Flags().IntP("port", "p", 8080, "Application port")
+    initCmd.Flags().Bool("overwrite", false, "Overwrite existing files")
+}
 
-	// Here you will define your flags and configuration settings.
+func runInit(cmd *cobra.Command, args []string) {
+    projectName := args[0]
+    
+    // Get flag values
+    templateType, _ := cmd.Flags().GetString("template")
+    language, _ := cmd.Flags().GetString("language")
+    port, _ := cmd.Flags().GetInt("port")
+    overwrite, _ := cmd.Flags().GetBool("overwrite")
+    
+    // Create project config
+    config := commands.ProjectConfig{
+        ProjectName: projectName,
+        Language:    language,
+        Port:        port,
+        Version:     "1.0.0",
+    }
+    
+    // Create project directory
+    if err := createProjectDirectory(projectName, overwrite); err != nil {
+        fmt.Printf("Error creating project directory: %v\n", err)
+        return
+    }
+    
+    // Generate files based on template
+    if err := generateProjectFiles(projectName, templateType, config); err != nil {
+        fmt.Printf("Error generating project files: %v\n", err)
+        return
+    }
+    
+    fmt.Printf("✅ Successfully created project: %s\n", projectName)
+    fmt.Printf("📁 Directory: %s\n", projectName)
+    fmt.Printf("🐳 Language: %s\n", language)
+    fmt.Printf("🚀 Next steps:\n")
+    fmt.Printf("   cd %s\n", projectName)
+    fmt.Printf("   deploygo build\n")
+    fmt.Printf("   deploygo deploy staging\n")
+}
 
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// initCmd.PersistentFlags().String("foo", "", "A help for foo")
+//
+func createProjectDirectory(projectName string, overwrite bool) error {
+    // Check if directory exists
+    if _, err := os.Stat(projectName); err == nil {
+        if !overwrite {
+            return fmt.Errorf("directory '%s' already exists. Use --overwrite to replace", projectName)
+        }
+        // Remove existing directory if overwrite is enabled
+        if err := os.RemoveAll(projectName); err != nil {
+            return fmt.Errorf("failed to remove existing directory: %v", err)
+        }
+    }
+    
+    // Create project directory
+    if err := os.MkdirAll(projectName, 0755); err != nil {
+        return fmt.Errorf("failed to create project directory: %v", err)
+    }
+    
+    return nil
+}
 
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// initCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+// 
+func generateProjectFiles(projectName, templateType string, config commands.ProjectConfig) error {
+    templates := map[string]func(string, commands.ProjectConfig) error{
+        "go":     commands.GenerateGoProject,
+        "nodejs": commands.GenerateNodeJSProject,
+        "python": commands.GeneratePythonProject,
+    }
+    
+    generator, exists := templates[templateType]
+    if !exists {
+        return fmt.Errorf("unsupported template type: %s", templateType)
+    }
+    
+    return generator(projectName, config)
 }

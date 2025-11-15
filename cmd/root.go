@@ -12,8 +12,8 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "deploygo",
 	Short: "Production-Grade Deployment CLI Tool Built in Go",
-	Long: `DeployGo is a modern, concurrent CLI tool that automates Docker-based deployments with enterprise-grade features.
- Built with performance and reliability in mind using Go's powerful concurrency model.`,
+	Long: `DeployGo is a modern CLI tool that automates Docker-based deployments 
+with enterprise-grade features. Built with performance and reliability in mind.`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	// Run: func(cmd *cobra.Command, args []string) { },
@@ -29,21 +29,11 @@ func Execute() {
 }
 
 func init() {
-	rootCmd.AddCommand(
-  // Project commands
-        initCmd, buildCmd, deployCmd,
-        
-        // Runtime commands  
-        monitorCmd, logsCmd, statusCmd,
-        
-        // Management commands
-        rollbackCmd, configCmd, checkCmd,
-        
-        // Utility commands
-        completionCmd, versionCmd,
-    )
+	rootCmd.AddCommand()
 
-	// rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.deploygo.yaml)")
+	//rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.deploygo.yaml)")
+ 	rootCmd.PersistentFlags().BoolP("verbose", "v", false, "verbose output")
+    rootCmd.PersistentFlags().Bool("debug", false, "debug mode")
 
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
