@@ -3,8 +3,6 @@ package cmd
 import (
     "fmt"
     "os"
-    "path/filepath"
-    "text/template"
     
     "github.com/spf13/cobra"
     "github.com/C9b3rD3vi1/deploygo/internals/commands"

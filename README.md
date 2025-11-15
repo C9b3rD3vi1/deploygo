@@ -34,19 +34,7 @@ DeployGo is a modern, concurrent CLI tool that automates Docker-based deployment
 
 🏗️ Architecture
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+![Architecture](./images/architecture.png)
 
 ## 📦 Installation
 
